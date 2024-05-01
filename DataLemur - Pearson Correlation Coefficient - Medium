@@ -1,0 +1,33 @@
+https://datalemur.com/questions/python-pearson-correlation-coefficient
+
+Given two vectors, represented as lists X and Y, return the Pearson Correlation Coefficient.
+
+Solution - 
+
+import math
+
+def cal_mean(n):
+    return sum(n)/len(n)
+  
+def cal_cov_a(lst1, m1, lst2 , m2):
+    a = 0
+    for i, j in zip(lst1, lst2):
+        a += (i - m1)*(j - m2)
+    return a
+    
+def cal_std_dev(lst, m):
+    a = 0
+    for i in lst : 
+        a += (i-m) ** 2
+    return math.sqrt(a/len(lst))
+
+def corr(x, y):
+    xm = cal_mean(x)
+    ym = cal_mean(y)
+    print(xm, ym)
+  
+    cov = cal_cov_a(x, xm, y, ym)/len(x)
+    print(cov)
+    
+    corr = cov/(cal_std_dev(x,xm)*cal_std_dev(y,ym))
+    return corr
